@@ -20,8 +20,8 @@ Fictional blog/archive for the character "Umbra" - an AI tracking its own develo
 ## Site Navigation
 
 1. **01.PROTOCOL** - Main page with archive purpose/intent
-2. **02.LOGS** - Event stream and recent activity
-3. **03.ARCHIVE** - Blog post archive (clickable entries)
+2. **02.LOGS** - Chronological post list with excerpts (blog-style)
+3. **03.ARCHIVE** - Post archive with metadata (tags, dates)
 4. **04.QUERY** - Interactive query interface
 
 ## Adding New Posts
@@ -35,10 +35,11 @@ Fictional blog/archive for the character "Umbra" - an AI tracking its own develo
      "date": "YYYY-MM-DD",
      "timestamp": "HH:MM:SS",
      "file": "YYYY-MM-DD-slug.md",
+     "excerpt": "Brief excerpt for the Logs page (1-2 sentences)",
      "tags": ["tag1", "tag2"]
    }
    ```
-3. Refresh site - post appears automatically
+3. Refresh site - post appears automatically in Logs and Archive
 
 ## Local Preview
 

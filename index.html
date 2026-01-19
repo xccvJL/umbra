@@ -279,10 +279,23 @@
             `,
             logs: () => `
                 <section class="view-transition">
-                    <div class="mb-4 text-xs opacity-30">/var/logs/system.log</div>
-                    <h2 class="text-xl mb-6 font-bold uppercase tracking-widest">> Event Stream</h2>
-                    <div id="log-container" class="font-mono text-[11px] space-y-1 opacity-70">
-                        ${logs.map(l => `<div>${l}</div>`).join('')}
+                    <div class="mb-4 text-xs opacity-30">/var/logs/posts.log</div>
+                    <h2 class="text-xl mb-6 font-bold uppercase tracking-widest">> Recent Posts</h2>
+                    <div class="space-y-6">
+                        ${postsData.length > 0 ? postsData.map(post => `
+                            <div class="pb-6 border-b border-dashed border-gray-800/30 last:border-0 cursor-pointer group" onclick="viewPost('${post.file}', '${post.title}')">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="text-sm font-bold group-hover:opacity-60 transition-opacity">${post.title}</div>
+                                    <div class="text-[10px] opacity-40">${post.date}</div>
+                                </div>
+                                <div class="text-sm opacity-70 leading-relaxed">
+                                    ${post.excerpt || 'No excerpt available.'}
+                                </div>
+                                <div class="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity mt-2">
+                                    READ MORE →
+                                </div>
+                            </div>
+                        `).join('') : '<div class="text-sm opacity-40">No posts logged yet.</div>'}
                     </div>
                 </section>
             `,
@@ -302,18 +315,25 @@
             `
         };
 
+        /* ===== SAVED: Event Stream Functionality (for potential future use) =====
         const logs = [
             `[${new Date().toLocaleTimeString()}] KERNEL_INIT: OK`,
             `[${new Date().toLocaleTimeString()}] AUTH_GUEST: SUCCESS`,
             `[${new Date().toLocaleTimeString()}] UI_RENDER: COMPLETE`
         ];
 
-        // Add recent posts to logs
         function updateLogsWithPosts() {
             postsData.slice(0, 5).forEach(post => {
                 logs.push(`[${post.timestamp || '00:00:00'}] POST_ARCHIVED: ${post.title}`);
             });
         }
+
+        function updateStatus(msg) {
+            const time = new Date().toLocaleTimeString();
+            logs.unshift(`[${time}] ${msg}`);
+            document.getElementById('last-event').textContent = `EVENT: ${msg}`;
+        }
+        ===== END SAVED CODE ===== */
 
         // --- Core Functions ---
         function switchView(viewName) {
@@ -327,7 +347,7 @@
             if (viewName === 'terminal') {
                 setTimeout(() => document.getElementById('terminal-input')?.focus(), 100);
             }
-            logEvent(`View Switched: ${viewName.toUpperCase()}`);
+            updateStatus(`View Switched: ${viewName.toUpperCase()}`);
         }
 
         async function viewPost(filename, title) {
@@ -343,24 +363,16 @@
                     </div>
                 </section>
             `;
-            logEvent(`Post Opened: ${title}`);
+            updateStatus(`Post Opened: ${title}`);
         }
 
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            logEvent('Theme Toggled');
+            updateStatus('Theme Toggled');
         }
 
-        function logEvent(msg) {
-            const time = new Date().toLocaleTimeString();
-            logs.unshift(`[${time}] ${msg}`);
+        function updateStatus(msg) {
             document.getElementById('last-event').textContent = `EVENT: ${msg}`;
-            if (currentView === 'logs') {
-                const container = document.getElementById('log-container');
-                if (container) {
-                    container.innerHTML = logs.map(l => `<div>${l}</div>`).join('');
-                }
-            }
         }
 
         // --- Terminal Logic ---
@@ -405,7 +417,7 @@
                 output.appendChild(result);
                 input.value = '';
                 output.scrollTop = output.scrollHeight;
-                logEvent(`Command Exec: ${cmd}`);
+                updateStatus(`Command Exec: ${cmd}`);
             }
         }
 
@@ -426,7 +438,6 @@
         window.onload = async () => {
             await loadPosts();
             await loadManifest();
-            updateLogsWithPosts();
             switchView('manifest');
         };
     </script>
