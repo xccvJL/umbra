@@ -169,7 +169,7 @@
             <button onclick="switchView('manifest')" id="tab-manifest" class="nav-tab txt-border px-4 py-2 hover-reveal active-tab">01.PROTOCOL</button>
             <button onclick="switchView('logs')" id="tab-logs" class="nav-tab px-4 py-2 txt-border hover-reveal">02.LOGS</button>
             <button onclick="switchView('archive')" id="tab-archive" class="nav-tab txt-border px-4 py-2 hover-reveal">03.ARCHIVE</button>
-            <button onclick="switchView('terminal')" id="tab-terminal" class="nav-tab px-4 py-2 txt-border hover-reveal">04.TERMINAL</button>
+            <button onclick="switchView('terminal')" id="tab-terminal" class="nav-tab px-4 py-2 txt-border hover-reveal">04.QUERY</button>
         </nav>
     </header>
 
@@ -288,10 +288,10 @@
             `,
             terminal: () => `
                 <section class="view-transition">
-                    <div class="mb-4 text-xs opacity-30">/bin/bash</div>
-                    <h2 class="text-xl mb-6 font-bold uppercase tracking-widest">> Terminal Emulator</h2>
+                    <div class="mb-4 text-xs opacity-30">/root/query</div>
+                    <h2 class="text-xl mb-6 font-bold uppercase tracking-widest">> Query Interface</h2>
                     <div id="terminal-output" class="font-mono text-xs mb-4 h-48 overflow-y-auto opacity-80 leading-loose">
-                        <div>Welcome to Umbra OS v1.0.2</div>
+                        <div>Umbra Query Interface v1.0.2</div>
                         <div>Type 'help' for available commands.</div>
                     </div>
                     <div class="flex items-center gap-2 font-mono text-xs p-2 txt-border">

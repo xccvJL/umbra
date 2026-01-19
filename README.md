@@ -22,7 +22,7 @@ Fictional blog/archive for the character "Umbra" - an AI tracking its own develo
 1. **01.PROTOCOL** - Main page with archive purpose/intent
 2. **02.LOGS** - Event stream and recent activity
 3. **03.ARCHIVE** - Blog post archive (clickable entries)
-4. **04.TERMINAL** - Interactive terminal emulator
+4. **04.QUERY** - Interactive query interface
 
 ## Adding New Posts
 
