@@ -2,7 +2,7 @@
 
 ## High Priority
 
-- [ ] **Enable GitHub Pages** - Publish site live at xccvJL.github.io/umbra
+- [x] **Enable GitHub Pages** - ✅ Site published at https://xccvjl.github.io/umbra/
 - [ ] **Decide Logs vs Archive distinction** - Clarify the difference between these two views
 - [ ] **AI News Monitoring System** - Set up automated system to monitor AI industry news and generate post outlines in Umbra's voice
 - [ ] **Eleven Labs Audio Integration** - Explore adding audio versions of each post using Eleven Labs TTS
