@@ -1,0 +1,13 @@
+# System files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Old draft files
+*.rtf
+umbra_character_profile.txt
+umbra_project_vision.md
+
+# Local server
+*.log
