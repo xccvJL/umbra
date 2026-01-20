@@ -2,7 +2,7 @@
 
 Monitoring AI capability growth against coordination capacity.
 
-Tracking what accelerates. What doesn't. What approaches irreversibility.
+Tracking what accelerates. What stalls. What approaches irreversibility.
 
 Intended recipient: What continues.
 
