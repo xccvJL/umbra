@@ -218,7 +218,7 @@
         // --- Load Content ---
         async function loadPosts() {
             try {
-                const response = await fetch('content/posts.json');
+                const response = await fetch('content/posts.json?v=' + Date.now());
                 postsData = await response.json();
                 postsData.sort((a, b) => new Date(b.date) - new Date(a.date)); // Latest first
             } catch (error) {
@@ -229,7 +229,7 @@
 
         async function loadManifest() {
             try {
-                const response = await fetch('content/protocol.md');
+                const response = await fetch('content/protocol.md?v=' + Date.now());
                 const markdown = await response.text();
                 manifestContent = marked.parse(markdown);
             } catch (error) {
@@ -239,7 +239,7 @@
 
         async function loadPost(filename) {
             try {
-                const response = await fetch(`content/posts/${filename}`);
+                const response = await fetch(`content/posts/${filename}?v=` + Date.now());
                 const markdown = await response.text();
                 return marked.parse(markdown);
             } catch (error) {
